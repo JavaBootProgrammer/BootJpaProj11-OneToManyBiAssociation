@@ -16,41 +16,39 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="JPA_OTM_TECHJOB")
+@Table(name = "JPA_OTM_TECHJOB")
 @Setter
 @Getter
 @RequiredArgsConstructor
 public class TechnicalJob {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private  Integer  jobId;
+	private Integer jobId;
 	@NonNull
-	@Column(length=30)
-	private  String    roleName;
+	@Column(length = 30)
+	private String roleName;
 	@NonNull
-	private   Double   minSalary;
+	private Double minSalary;
 	@NonNull
-	private   Double  maxSalary;
+	private Double maxSalary;
 	@NonNull
-	private   Integer  vacanciesCount;
-	
-	@ManyToOne(targetEntity = Company.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(name="company_id",referencedColumnName = "cid")   //company_id is going to  FK column in child table pointing  cid pk colum of parent table
-	private   Company    company;
-	
+	private Integer vacanciesCount;
+
+	@ManyToOne(targetEntity = Company.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "company_id", referencedColumnName = "cid") // company_id is going to FK column in child table
+																	// pointing cid pk colum of parent table
+	private Company company;
+
 	public TechnicalJob() {
 		System.out.println("TechnicalJob::0-param constructor");
 	}
 
-	
-	
-	//toString()
-	
+	// toString()
+
 	@Override
 	public String toString() {
 		return "TechnicalJob [jobId=" + jobId + ", roleName=" + roleName + ", minSalary=" + minSalary + ", maxSalary="
 				+ maxSalary + ", vacanciesCount=" + vacanciesCount + "]";
 	}
-	
 
 }
