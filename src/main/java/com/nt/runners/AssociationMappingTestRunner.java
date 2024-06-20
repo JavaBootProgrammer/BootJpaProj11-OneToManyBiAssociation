@@ -15,22 +15,27 @@ public class AssociationMappingTestRunner implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// save objs (parent to child)
 
-		  try { String msg=compService.saveDataUsingParent(); System.out.println(msg);
-		  } catch(Exception e) { e.printStackTrace(); }
+		try {
+			String msg = compService.saveDataUsingParent();
+			System.out.println(msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
+		try {
+			String msg = compService.saveDataUsingChild();
+			System.out.println(msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
+		compService.loadDataUsingParent();
 
-		  try { String msg=compService.saveDataUsingChild(); System.out.println(msg); }
-		  catch(Exception e) { e.printStackTrace(); }
+		compService.loadDataUsingChild();
 
+		compService.deleteDataUsingParent(100);
 
-		 compService.loadDataUsingParent();
-
-		 compService.loadDataUsingChild();
-
-		 compService.deleteDataUsingParent(100);
-
-		 compService.deleteDataUsingChild(102);
+		compService.deleteDataUsingChild(102);
 
 		compService.addNewChildTotheExistingChildsOfAParent(101);
 

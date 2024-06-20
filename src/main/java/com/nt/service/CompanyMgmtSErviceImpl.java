@@ -19,25 +19,23 @@ public class CompanyMgmtSErviceImpl implements ICompanyMgmtService {
 	@Autowired
 	private ITechnicalJobRepository techJobRepo;
 
-	@Override
 	public String saveDataUsingParent() {
 		// prepare parent obj
-		Company company = new Company("HCL", "hyd", 500566L);
+		Company hcl = new Company("HCL", "hyd", 500566L);
 		// prepare child objs
-		TechnicalJob job1 = new TechnicalJob("developer", 20000.0, 200000.0, 2);
-		TechnicalJob job2 = new TechnicalJob("analyst", 30000.0, 300000.0, 4);
+		TechnicalJob developer = new TechnicalJob("developer", 20000.0, 200000.0, 2);
+		TechnicalJob analyst = new TechnicalJob("analyst", 30000.0, 300000.0, 4);
 		// set parent to childs
-		job1.setCompany(company);
-		job2.setCompany(company);
+		developer.setCompany(hcl);
+		analyst.setCompany(hcl);
 		// set childs to parent
-		company.setOpenings(Set.of(job1, job2));
+		hcl.setOpenings(Set.of(developer, analyst));
 		// save the objs (parent to child)
-		companyRepo.save(company);
+		companyRepo.save(hcl);
 		return " Parent  obj and its associated child objs are saved";
 
 	}
 
-	@Override
 	public String saveDataUsingChild() {
 		// prepare parent obj
 		Company comp1 = new Company("Wiport", "blore", 515566L);
@@ -56,7 +54,6 @@ public class CompanyMgmtSErviceImpl implements ICompanyMgmtService {
 		return "childs objs  and their associated parent obj are saved";
 	}
 
-	@Override
 	public void loadDataUsingParent() {
 		List<Company> list = companyRepo.findAll();
 		// to get all parents
@@ -72,7 +69,6 @@ public class CompanyMgmtSErviceImpl implements ICompanyMgmtService {
 
 	}// method
 
-	@Override
 	public void loadDataUsingChild() {
 		List<TechnicalJob> list = techJobRepo.findAll();
 		list.forEach(job -> {
@@ -85,7 +81,6 @@ public class CompanyMgmtSErviceImpl implements ICompanyMgmtService {
 
 	}// method
 
-	@Override
 	public String deleteDataUsingParent(Integer parentId) {
 		// Load parent
 		Optional<Company> companyRepoById = companyRepo.findById(parentId);
@@ -96,7 +91,6 @@ public class CompanyMgmtSErviceImpl implements ICompanyMgmtService {
 		return "Parent obj is not found for deletion";
 	}
 
-	@Override
 	public String deleteDataUsingChild(int childId) {
 		// Load child object
 		Optional<TechnicalJob> techJobRepoById = techJobRepo.findById(childId);
@@ -107,7 +101,6 @@ public class CompanyMgmtSErviceImpl implements ICompanyMgmtService {
 		return "child is not found for deletion";
 	}
 
-	@Override
 	public String addNewChildTotheExistingChildsOfAParent(int parentId) {
 		// get PArent obj
 		Optional<Company> companyRepoById = companyRepo.findById(parentId);

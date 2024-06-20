@@ -2,16 +2,7 @@ package com.nt.entity;
 
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -39,11 +30,11 @@ public class Company {
 	@Column(length = 30)
 	@NonNull
 	private Long pinCode;
+
 	@OneToMany(targetEntity = TechnicalJob.class, cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.EAGER) // to
 																															// build
-	// the
-																															// assocition
-	// @JoinColumn(name = "company_id",referencedColumnName = "cid")
+																															// assosiation
+	// @JoinColumn(name = "companyID",referencedColumnName = "jobId")
 	private Set<TechnicalJob> openings; // for 1 to M mapping
 
 	public Company() {

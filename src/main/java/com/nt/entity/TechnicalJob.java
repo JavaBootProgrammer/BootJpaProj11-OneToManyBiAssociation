@@ -35,8 +35,8 @@ public class TechnicalJob {
 	private Integer vacanciesCount;
 
 	@ManyToOne(targetEntity = Company.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "company_id", referencedColumnName = "cid") // company_id is going to FK column in child table
-																	// pointing cid pk colum of parent table
+	@JoinColumn(name = "cid", referencedColumnName = "companyID") // company_id is going to FK column in child table
+	// pointing cid pk colum of parent table
 	private Company company;
 
 	public TechnicalJob() {
@@ -44,7 +44,6 @@ public class TechnicalJob {
 	}
 
 	// toString()
-
 	@Override
 	public String toString() {
 		return "TechnicalJob [jobId=" + jobId + ", roleName=" + roleName + ", minSalary=" + minSalary + ", maxSalary="
