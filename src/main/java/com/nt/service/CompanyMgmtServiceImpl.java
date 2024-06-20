@@ -13,7 +13,7 @@ import com.nt.repository.ICompanyRepository;
 import com.nt.repository.ITechnicalJobRepository;
 
 @Service
-public class CompanyMgmtSErviceImpl implements ICompanyMgmtService {
+public class CompanyMgmtServiceImpl implements ICompanyMgmtService {
 	@Autowired
 	private ICompanyRepository companyRepo;
 	@Autowired
